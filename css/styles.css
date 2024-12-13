@@ -1,0 +1,169 @@
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #56ccf2, #2f80ed); /* Gradiente fresco y vibrante */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    color: #ffffff;
+    background-image: url('https://www.transparenttextures.com/patterns/arches.png'); /* Textura sutil */
+    background-size: cover;
+}
+
+/* Encabezado */
+h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.4); /* Sombra más intensa */
+    margin-bottom: 30px;
+
+    /* Gradiente en el texto */
+    background: linear-gradient(90deg, #f7ff00, #db36a4);
+    
+    /* Compatibilidad con WebKit */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Respaldo para otros navegadores */
+    background-clip: text; 
+    color: transparent; /* Para asegurar el comportamiento en otros navegadores */
+}
+
+
+/* Contenedor del juego */
+.game-container {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    height: 500px;
+    margin: 0 auto;
+    border-radius: 30px;
+    background: linear-gradient(145deg, #ffffff, #e4e4e4); /* Iluminación sutil en el fondo */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); /* Sombra más dramática */
+    overflow: hidden;
+    transform: scale(1);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.game-container:hover {
+    transform: scale(1.08); /* Zoom más intenso */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); /* Sombra más fuerte al hover */
+}
+
+/* Contenedor de Snoopy */
+#snoopy-container {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: transform 0.4s ease, width 0.4s ease;
+}
+
+#snoopy {
+    width: 130px;
+    transition: width 0.5s ease, transform 0.5s ease;
+    filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.4)); /* Sombra más fuerte */
+}
+
+/* Animación suave para Snoopy al ser alimentado */
+#snoopy.grow {
+    animation: growSnoopy 1s ease forwards;
+}
+
+@keyframes growSnoopy {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+/* Mensaje motivacional */
+#message {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffffff;
+    opacity: 0; /* Comienza oculto */
+    background: rgba(0, 0, 0, 0.85); /* Fondo más oscuro */
+    padding: 20px 30px;
+    border-radius: 40px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Transiciones suaves */
+    transform: translate(-50%, -40px); /* Comienza un poco más arriba */
+    letter-spacing: 2px;
+    z-index: 100; /* Asegurar que se vea por encima de otros elementos */
+}
+
+#message.show {
+    opacity: 1;
+    transform: translateY(0); /* Suavidad en la entrada del mensaje */
+}
+
+/* Estilo de la comida */
+.food {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 75px;
+    height: 75px;
+    background: url('../img/comida.jpg') no-repeat center/cover;
+    cursor: grab;
+    border-radius: 50%;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35); /* Sombra suave */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.food:active {
+    cursor: grabbing;
+    transform: scale(0.85); /* Efecto de reducción al agarrar */
+}
+
+.food:hover {
+    transform: scale(1.25); /* Efecto de escala más pronunciado */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Sombra más dramática al hover */
+}
+
+/* Interactividad con la comida */
+.food.bounce {
+    animation: bounce 1s ease-in-out infinite; /* Animación de rebote continuo */
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Media queries para dispositivos pequeños */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.8rem;
+    }
+
+    .game-container {
+        height: 400px;
+    }
+
+    #snoopy {
+        width: 100px;
+    }
+
+    .food {
+        width: 60px;
+        height: 60px;
+    }
+}
